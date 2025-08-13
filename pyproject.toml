@@ -1,0 +1,22 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=vendas --cov-report=term-missing"
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+lint.select = ["E", "F", "I"]
+lint.ignore = []
+exclude = [
+    ".venv",
+    "venv",
+    "build",
+    "dist",
+    "__pycache__",
+    ".git",
+    ".mypy_cache",
+    ".pytest_cache",
+]
+
+[tool.ruff.format]
+quote-style = "double"

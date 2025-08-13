@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+
+# Virtualenv
+venv/
+.env/
+.envrc
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+
+# Testes e cobertura
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.log
+
+# Distribuição
+build/
+dist/
+*.egg-info/
+.eggs/
