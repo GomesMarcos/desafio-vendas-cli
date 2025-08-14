@@ -8,6 +8,6 @@ setup(
     packages=find_packages(),
     install_requires=[],
     python_requires=">=3.12",
-    entry_points={"console_scripts": ["vendas-cli=parser.relatorios:parser"]},
+    entry_points={"console_scripts": ["vendas-cli=parser.main:main"]},
     include_package_data=True,
 )

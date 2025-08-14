@@ -1,7 +1,7 @@
 from contextlib import suppress
 from datetime import datetime
 
-from core.logger import logger
+from helpers.logger import logger
 
 
 class DateHandler:

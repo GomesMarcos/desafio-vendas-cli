@@ -3,8 +3,8 @@ from unittest.mock import MagicMock, patch
 import pytest
 
 from parser.relatorios import Relatorio
-from tests.fixtures import (
-    dummy_csv_file,  # noqa: F401 # Importa explicitamente a fixture
+from tests.fixtures.relatorios import (
+    dummy_csv_file,  # noqa: F401
     exception_ids,
     exception_params,
     happy_path_ids,
