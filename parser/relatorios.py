@@ -3,8 +3,8 @@ from decimal import Decimal
 from pathlib import Path
 from typing import List
 
-from core.date_handler import DateHandler
-from core.logger import logger
+from helpers.date_handler import DateHandler
+from helpers.logger import logger
 from parser.modelos import Produto, Venda
 
 
