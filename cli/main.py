@@ -12,7 +12,9 @@ def configurar_argumentos() -> argparse.ArgumentParser:
     Returns:
         argparse.ArgumentParser: O parser configurado.
     """
-    parser = argparse.ArgumentParser(description="Processa arquivos de vendas e gera relatórios.")
+    parser = argparse.ArgumentParser(
+        description="Processa arquivos de vendas e gera relatórios."
+    )
     parser.add_argument(
         "input_file",
         type=str,

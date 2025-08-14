@@ -44,3 +44,21 @@ class DateHandler:
     def date_to_str(date: datetime) -> str:
         """Converte um objeto datetime.date para string no formato 'YYYY-MM-DD'."""
         return date.strftime("%Y-%m-%d")
+
+    @staticmethod
+    def valida_data_entre_intervalo(
+        data_alvo: datetime.date,
+        data_inicial: datetime.date,
+        data_final: datetime.date,
+    ) -> bool:
+        """
+        Valida se uma data está dentro de um intervalo.
+        """
+        return data_inicial <= data_alvo <= data_final
+
+    @staticmethod
+    def obter_data_e_hora_para_salvar_relatorio() -> str:
+        """
+        Obtém a data e hora atual formatada para o nome do arquivo de relatório.
+        """
+        return datetime.now().strftime("%Y-%m-%d_%H-%M-%S")

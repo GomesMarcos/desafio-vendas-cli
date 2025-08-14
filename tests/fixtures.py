@@ -4,8 +4,16 @@ from unittest.mock import MagicMock
 import pytest
 
 happy_path_params = [
-    ([MagicMock()], "text", "relatorio_text"),
-    ([MagicMock(), MagicMock()], "json", "relatorio_json"),
+    (
+        [MagicMock()],
+        "text",
+        "Relatório de Vendas\nTotal em Vendas: R$998.90\nProduto Mais Vendido: Camiseta (R$49.90)\nQuantidade Vendida: 6\nData da venda: 01/01/2025\n",
+    ),
+    (
+        [MagicMock(), MagicMock()],
+        "json",
+        '{\n    "total_vendas": "998.90",\n    "produto_mais_vendido": {\n        "nome": "Camiseta",\n        "preco": "R$49.9",\n        "quantidade": 6,\n        "data": "01/01/2025"\n    }\n}',
+    ),
 ]
 happy_path_ids = [
     "text-format-single-venda",
@@ -55,9 +63,16 @@ def dummy_csv_file(request):
         if dummy_path.exists():
             dummy_path.unlink()
     else:
-        # Para outros testes, criar o arquivo com dados de vendas
+        # Para outros testes, criar o arquivo com dados de vendas (vários itens repetidos)
         dummy_path.write_text(
-            "produto,quantidade,preco_unitario,data\nCamiseta,3,49.9,01/01/2025\n",
+            "produto,quantidade,preco_unitario,data\n"
+            "Camiseta,3,49.9,01/01/2025\n"
+            "Calça,2,99.9,13/08/2025\n"
+            "Camiseta,1,49.9,10/01/2025\n"
+            "Tênis,1,199.9,01/08/2025\n"
+            "Camiseta,2,49.9,15/01/2025\n"
+            "Calça,1,99.9,20/08/2025\n"
+            "Tênis,1,199.9,25/08/2025\n",
             encoding="utf-8",
         )
         yield
