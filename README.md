@@ -5,6 +5,10 @@ O objetivo deste projeto é ler um arquivo CSV cujo cabeçalho é "produto,quant
 ## Desenvolvimento / Execução Local
 Passo a passo para configuração de execução em ambiente local
 
+### Dependências:
+- Linux
+- Python >= 3.11
+
 ### Crie uma Venv
 `$ python -m venv venv`
 
