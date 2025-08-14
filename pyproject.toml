@@ -1,6 +1,24 @@
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=parser --cov-report=term-missing"
+addopts = "--cov=. --cov-report=term-missing --cov-fail-under=80"
+ignore_paths = [
+    "venv",
+    ".venv",
+    "build",
+    "dist",
+    "__pycache__",
+    ".mypy_cache",
+    ".pytest_cache",
+    ".git",
+    "setup.py",
+    "helpers/logger.py",
+]
+
+[tool.coverage.run]
+omit = [
+    "setup.py",
+    "helpers/logger.py",
+]
 
 [tool.ruff]
 line-length = 88
