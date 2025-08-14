@@ -1,16 +1,13 @@
 import logging
 
 
-def get_logger(name: str = "desafio-vendas-cli") -> logging.Logger:
+def get_logger() -> logging.Logger:
     """Obtém um logger configurado.
-
-    Args:
-        name (str, optional): O nome do logger. Defaults to None.
 
     Returns:
         logging.Logger: O logger configurado.
     """
-    logger = logging.getLogger(name)
+    logger = logging.getLogger("desafio-vendas-cli")
     logger.setLevel(logging.INFO)
 
     if not logger.hasHandlers():

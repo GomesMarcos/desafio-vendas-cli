@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from vendas.leitor import read_csv
+from parser.leitor import read_csv
 
 
 def main():

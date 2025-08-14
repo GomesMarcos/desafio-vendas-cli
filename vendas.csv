@@ -1,5 +1,5 @@
-produto,quantidade,preco_unitario
-Camiseta,3,49.9
-Calça,2,99.9
-Camiseta,1,49.9
-Tênis,1,199.9
+produto,quantidade,preco_unitario,data
+Camiseta,3,49.9,01/01/2025
+Calça,2,99.9,13/08/2025
+Camiseta,1,49.9,10/01/2025
+Tênis,1,199.9,01/08/2025

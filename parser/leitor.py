@@ -2,7 +2,7 @@ from csv import DictReader
 from pathlib import Path
 from typing import Dict, List
 
-from common.logger import logger
+from core.logger import logger
 
 
 def extrair_dados(file_path: Path) -> List[Dict]:

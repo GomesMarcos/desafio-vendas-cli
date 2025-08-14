@@ -1,6 +1,6 @@
 # desafio-vendas-cli
 
-O objetivo deste projeto é ler um arquivo CSV cujo cabeçalho é "produto,quantidade,preco_unitario"
+O objetivo deste projeto é ler um arquivo CSV cujo cabeçalho é "produto,quantidade,preco_unitario,data"
 
 ## Desenvolvimento / Execução Local
 Passo a passo para configuração de execução em ambiente local
@@ -19,3 +19,7 @@ Passo a passo para configuração de execução em ambiente local
 Ruff foi a ferramenta de linting e formatação por ser de fácil configuração, permite personalização e é bastante performática em identificar quebras de PEPs e/ou formatar código conforme o arquivo [pyproject.toml](pyproject.toml) nas sessões `tool.ruff` e `tool.ruff.format`
 
 - Uso: `$ ruff format . && ruff check .`
+
+## Testes
+Para verificar a cobertura de testes, execute no terminal:
+`$ coverage run -m pytest`

@@ -1,3 +1,4 @@
+# Dependências do Projeto
 pytest-cov
 ruff
 
