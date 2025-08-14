@@ -1,6 +1,6 @@
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "--cov=vendas --cov-report=term-missing"
+addopts = "--cov=parser --cov-report=term-missing"
 
 [tool.ruff]
 line-length = 88
