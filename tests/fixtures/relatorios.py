@@ -7,12 +7,12 @@ happy_path_params = [
     (
         [MagicMock()],
         "text",
-        "Relatório de Vendas\nTotal em Vendas: R$998.90\nProduto Mais Vendido: Camiseta (R$49.90)\nQuantidade Vendida: 6\nData da venda: 01/01/2025\n",  # noqa: E501
+        "Relatório de Vendas\nTotal em Vendas: R$998.90\nTotal de vendas por produto:\n  - Camiseta: R$299.40\n  - Calça: R$299.70\n  - Tênis: R$399.80\nProduto Mais Vendido:\n  - Nome: Camiseta\n  - Preço: R$49.90\n  - Quantidade Vendida: 6\n  - Data da venda: 01/01/2025\n",  # noqa: E501
     ),
     (
         [MagicMock(), MagicMock()],
         "json",
-        '{\n    "total_vendas": "998.90",\n    "produto_mais_vendido": {\n        "nome": "Camiseta",\n        "preco": "R$49.9",\n        "quantidade": 6,\n        "data": "01/01/2025"\n    }\n}',  # noqa: E501
+        '{\n    "total_vendas": "998.90",\n    "total_por_produto": {\n        "Camiseta": "299.40",\n        "Cal\\u00e7a": "299.70",\n        "T\\u00eanis": "399.80"\n    },\n    "produto_mais_vendido": {\n        "nome": "Camiseta",\n        "preco": "R$49.9",\n        "quantidade": 6,\n        "data": "01/01/2025"\n    }\n}',  # noqa: E501
     ),
 ]
 happy_path_ids = [

@@ -88,8 +88,14 @@ class Relatorio:
         produto_mais_vendido = maior_venda.produto if maior_venda else None
         quantidade_mais_vendida = maior_venda.quantidade if maior_venda else 0
 
+        # Obtém o total de vendas por produto
+        total_vendas_por_produto = self.__obter_total_de_vendas_por_produto()
+
         relatorio = {
             "total_vendas": str(total_vendas),
+            "total_por_produto": {
+                nome: str(valor) for nome, valor in total_vendas_por_produto.items()
+            },
             "produto_mais_vendido": (
                 {
                     "nome": produto_mais_vendido.nome,
@@ -117,14 +123,22 @@ class Relatorio:
         produto_mais_vendido = maior_venda.produto if maior_venda else None
         quantidade_mais_vendida = maior_venda.quantidade if maior_venda else 0
 
+        # Obtém o total de vendas por produto
+        total_vendas_por_produto = self.__obter_total_de_vendas_por_produto()
+
         relatorio = "Relatório de Vendas\n"
         relatorio += f"Total em Vendas: R${total_vendas:.2f}\n"
+        relatorio += "Total de vendas por produto:\n"
+        for nome, valor in total_vendas_por_produto.items():
+            relatorio += f"  - {nome}: R${valor:.2f}\n"
 
         produto_nome = produto_mais_vendido.nome
         produto_preco = produto_mais_vendido.preco
-        relatorio += f"Produto Mais Vendido: {produto_nome} (R${produto_preco:.2f})\n"
-        relatorio += f"Quantidade Vendida: {quantidade_mais_vendida}\n"
-        relatorio += f"Data da venda: {maior_venda.data_str}\n"
+        relatorio += f"Produto Mais Vendido:\n"
+        relatorio += f"  - Nome: {produto_nome}\n"
+        relatorio += f"  - Preço: R${produto_preco:.2f}\n"
+        relatorio += f"  - Quantidade Vendida: {quantidade_mais_vendida}\n"
+        relatorio += f"  - Data da venda: {maior_venda.data_str}\n"
         logger.info("Relatório de vendas em texto gerado com sucesso!")
         return relatorio
 
@@ -193,7 +207,7 @@ class Relatorio:
                 datas.append(DateHandler.str_to_date(self.data_final))
             if datas and data_venda not in datas:
                 return None
-            logger.info("Com a data informada.")
+            logger.info(f"Data informada para filtro: {data_venda}")
         logger.debug(f"Venda obtida: {venda}")
         return venda
 
@@ -243,3 +257,14 @@ class Relatorio:
 
         # Retorna a venda com maior quantidade
         return max(vendas_por_produto.values(), key=lambda v: v.quantidade)
+
+    def __obter_total_de_vendas_por_produto(self):
+        """Obtém o total de vendas por produto."""
+        logger.debug("Obtendo o total de vendas por produto")
+        total_por_produto = {}
+        for venda in self.vendas:
+            nome = venda.produto.nome
+            if nome not in total_por_produto:
+                total_por_produto[nome] = Decimal("0.00")
+            total_por_produto[nome] += venda.produto.preco * Decimal(venda.quantidade)
+        return total_por_produto
