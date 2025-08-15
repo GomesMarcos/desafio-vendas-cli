@@ -7,12 +7,12 @@ happy_path_params = [
     (
         [MagicMock()],
         "text",
-        "Relatório de Vendas\nTotal em Vendas: R$998.90\nTotal de vendas por produto:\n  - Camiseta: R$299.40\n  - Calça: R$299.70\n  - Tênis: R$399.80\nProduto Mais Vendido:\n  - Nome: Camiseta\n  - Preço: R$49.90\n  - Quantidade Vendida: 6\n  - Data da venda: 01/01/2025\n",  # noqa: E501
+        "Relatório de Vendas\nTotal em Vendas: R$998.90\nTotal de vendas por produto:\n  * Camiseta: \n    - Preço: R$299.40\n    - Quantidade: 6\n    - Preço Unitário: R$49.90\n  * Calça: \n    - Preço: R$299.70\n    - Quantidade: 3\n    - Preço Unitário: R$99.90\n  * Tênis: \n    - Preço: R$399.80\n    - Quantidade: 2\n    - Preço Unitário: R$199.90\nProduto Mais Vendido:\n  - Nome: Camiseta\n  - Preço: R$49.90\n  - Quantidade Vendida: 6\n  - Data da venda: 01/01/2025\n",  # noqa: E501
     ),
     (
         [MagicMock(), MagicMock()],
         "json",
-        '{\n    "total_vendas": "998.90",\n    "total_por_produto": {\n        "Camiseta": "299.40",\n        "Cal\\u00e7a": "299.70",\n        "T\\u00eanis": "399.80"\n    },\n    "produto_mais_vendido": {\n        "nome": "Camiseta",\n        "preco": "R$49.9",\n        "quantidade": 6,\n        "data": "01/01/2025"\n    }\n}',  # noqa: E501
+        '{\n    "total_vendas": "998.90",\n    "total_por_produto": {\n        "Camiseta": {\n            "total": "299.40",\n            "quantidade": 6,\n            "preco_unitario": "R$49.90"\n        },\n        "Cal\\u00e7a": {\n            "total": "299.70",\n            "quantidade": 3,\n            "preco_unitario": "R$99.90"\n        },\n        "T\\u00eanis": {\n            "total": "399.80",\n            "quantidade": 2,\n            "preco_unitario": "R$199.90"\n        }\n    },\n    "produto_mais_vendido": {\n        "nome": "Camiseta",\n        "preco": "R$49.9",\n        "quantidade": 6,\n        "data": "01/01/2025"\n    }\n}',  # noqa: E501
     ),
 ]
 happy_path_ids = [
