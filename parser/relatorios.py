@@ -94,7 +94,12 @@ class Relatorio:
         relatorio = {
             "total_vendas": str(total_vendas),
             "total_por_produto": {
-                nome: str(valor) for nome, valor in total_vendas_por_produto.items()
+                nome: {
+                    "total": str(valor["total"]),
+                    "quantidade": valor["quantidade"],
+                    "preco_unitario": f"R${valor['preco_unitario']:.2f}",
+                }
+                for nome, valor in total_vendas_por_produto.items()
             },
             "produto_mais_vendido": (
                 {
@@ -130,7 +135,10 @@ class Relatorio:
         relatorio += f"Total em Vendas: R${total_vendas:.2f}\n"
         relatorio += "Total de vendas por produto:\n"
         for nome, valor in total_vendas_por_produto.items():
-            relatorio += f"  - {nome}: R${valor:.2f}\n"
+            relatorio += f"  * {nome}: \n"
+            relatorio += f"    - Preço: R${valor['total']:.2f}\n"
+            relatorio += f"    - Quantidade: {valor['quantidade']}\n"
+            relatorio += f"    - Preço Unitário: R${valor['preco_unitario']:.2f}\n"
 
         produto_nome = produto_mais_vendido.nome
         produto_preco = produto_mais_vendido.preco
@@ -265,6 +273,14 @@ class Relatorio:
         for venda in self.vendas:
             nome = venda.produto.nome
             if nome not in total_por_produto:
-                total_por_produto[nome] = Decimal("0.00")
-            total_por_produto[nome] += venda.produto.preco * Decimal(venda.quantidade)
+                total_por_produto[nome] = {
+                    "total": Decimal("0.00"),
+                    "quantidade": 0,
+                    "preco_unitario": venda.produto.preco,
+                }
+            total_por_produto[nome]["total"] += venda.produto.preco * Decimal(
+                venda.quantidade
+            )
+            total_por_produto[nome]["quantidade"] += venda.quantidade
+            total_por_produto[nome]["preco_unitario"] = venda.produto.preco
         return total_por_produto
