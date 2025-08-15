@@ -41,7 +41,7 @@ def __set_loggers_handlers(logger: logging.Logger) -> None:
     logger.addHandler(stream_handler)
 
     # File handler (sem cores)
-    file_handler = logging.FileHandler("logs", encoding="utf-8")
+    file_handler = logging.FileHandler(".log", encoding="utf-8")
     file_formatter = logging.Formatter(
         "[%(asctime)s] %(levelname)s %(name)s: %(message)s", datefmt="%Y-%m-%d %H:%M:%S"
     )
