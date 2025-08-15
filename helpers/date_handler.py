@@ -16,6 +16,9 @@ class DateHandler:
         """
         Tenta converter uma string para datetime.date usando vários formatos comuns.
         """
+        if not date_str:
+            return None
+
         formatos = [
             "%Y-%m-%d",
             "%y-%m-%d",

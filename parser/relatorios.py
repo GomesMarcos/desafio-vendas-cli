@@ -101,6 +101,7 @@ class Relatorio:
                 else None
             ),
         }
+        logger.info("Relatório de vendas em JSON gerado com sucesso!")
         return json.dumps(relatorio, indent=4)
 
     def __gerar_relatorio_texto(self):
@@ -119,16 +120,12 @@ class Relatorio:
         relatorio = "Relatório de Vendas\n"
         relatorio += f"Total em Vendas: R${total_vendas:.2f}\n"
 
-        if produto_mais_vendido:
-            produto_nome = produto_mais_vendido.nome
-            produto_preco = produto_mais_vendido.preco
-            relatorio += (
-                f"Produto Mais Vendido: {produto_nome} (R${produto_preco:.2f})\n"
-            )
-            relatorio += f"Quantidade Vendida: {quantidade_mais_vendida}\n"
-            relatorio += f"Data da venda: {maior_venda.data_str}\n"
-        else:
-            relatorio += "Nenhum produto vendido.\n"
+        produto_nome = produto_mais_vendido.nome
+        produto_preco = produto_mais_vendido.preco
+        relatorio += f"Produto Mais Vendido: {produto_nome} (R${produto_preco:.2f})\n"
+        relatorio += f"Quantidade Vendida: {quantidade_mais_vendida}\n"
+        relatorio += f"Data da venda: {maior_venda.data_str}\n"
+        logger.info("Relatório de vendas em texto gerado com sucesso!")
         return relatorio
 
     def __extrair_dados_de_vendas(self) -> None:
@@ -169,6 +166,12 @@ class Relatorio:
             mensagem = f"Data não informada na linha: {linha}"
             logger.error(mensagem)
             raise ValueError(mensagem)
+
+        venda = Venda(
+            produto=produto_instanciado,
+            quantidade=int(linha.get("quantidade", "0")),
+            data_str=linha["data"],
+        )
         if self.data_inicial and self.data_final:
             # Se houver filtro de data, verifica se a data
             # da venda está dentro do intervalo
@@ -179,11 +182,7 @@ class Relatorio:
                 data_venda, self.data_inicial, self.data_final
             ):
                 return None
-            venda = Venda(
-                produto=produto_instanciado,
-                quantidade=int(linha.get("quantidade", "0")),
-                data_str=DateHandler.date_to_str(data_venda),
-            )
+            logger.info("Venda dentro do intervalo de datas.")
         elif self.data_inicial or self.data_final:
             # Se houver apenas uma data, verifica se a data da venda
             # é igual à data inicial ou final
@@ -194,13 +193,8 @@ class Relatorio:
                 datas.append(DateHandler.str_to_date(self.data_final))
             if datas and data_venda not in datas:
                 return None
-        else:
-            # Se não houver filtro de data, cria a venda diretamente
-            venda = Venda(
-                produto=produto_instanciado,
-                quantidade=int(linha.get("quantidade", "0")),
-                data_str=linha.get("data", ""),
-            )
+            logger.info("Com a data informada.")
+        logger.debug(f"Venda obtida: {venda}")
         return venda
 
     def __prepara_e_valida_as_datas(self):

@@ -12,12 +12,14 @@ ignore_paths = [
     ".git",
     "setup.py",
     "helpers/logger.py",
+    "tests/*",
 ]
 
 [tool.coverage.run]
 omit = [
     "setup.py",
     "helpers/logger.py",
+    "tests/*",
 ]
 
 [tool.ruff]
