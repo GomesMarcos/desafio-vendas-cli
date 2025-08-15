@@ -42,7 +42,10 @@ Ruff foi a ferramenta de linting e formatação por ser de fácil configuração
 ## Testes
 Para verificar a cobertura de testes, execute no terminal:
 ```bash
-coverage run -m pytest
+pytest
 coverage report --fail-under 80
 ```
-Caso queria visualizar as linhas faltantes, digite `coverage html` e, em seguida, `firefox htmlcov/index.html` para abrir o relatório de testes no navegador.
+Caso queria visualizar o relatório de cobertura de testes, digite:
+`coverage html`
+Para abrir o relatório de testes no navegador:
+`firefox htmlcov/index.html` 

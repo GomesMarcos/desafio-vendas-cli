@@ -116,7 +116,8 @@ def test_obter_relatorio_conforme_formato_text(monkeypatch, dummy_csv_file):
     with open(result, "r", encoding="utf-8") as f:
         content = f.read()
         assert "Relatório de Vendas" in content
-    result.unlink()
+
+    result.unlink()  # Remove o arquivo após o teste
 
 
 def test_obter_relatorio_conforme_formato_json(monkeypatch, dummy_csv_file):
@@ -141,7 +142,7 @@ def test_obter_relatorio_conforme_formato_json(monkeypatch, dummy_csv_file):
     with open(result, "r", encoding="utf-8") as f:
         content = f.read()
         assert "total_vendas" in content
-    result.unlink()
+    result.unlink()  # Remove o arquivo após o teste
 
 
 def test_extrair_dados_de_vendas_file_not_found():
